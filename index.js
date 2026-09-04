@@ -1,4 +1,4 @@
-econst {
+const {
   Client,
   GatewayIntentBits,
   EmbedBuilder

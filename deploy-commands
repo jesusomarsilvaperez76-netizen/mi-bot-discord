@@ -1,1 +1,48 @@
+const {
+  REST,
+  Routes,
+  SlashCommandBuilder
+} = require("discord.js");
 
+const commands = [
+  new SlashCommandBuilder()
+    .setName("hola")
+    .setDescription("El bot te saluda"),
+
+  new SlashCommandBuilder()
+    .setName("ping")
+    .setDescription("Muestra la latencia del bot"),
+
+  new SlashCommandBuilder()
+    .setName("ayuda")
+    .setDescription("Muestra los comandos disponibles"),
+
+  new SlashCommandBuilder()
+    .setName("server")
+    .setDescription("Muestra información del servidor"),
+
+  new SlashCommandBuilder()
+    .setName("avatar")
+    .setDescription("Muestra tu avatar")
+].map(command => command.toJSON());
+
+const rest = new REST({ version: "10" })
+  .setToken(process.env.DISCORD_TOKEN);
+
+(async () => {
+  try {
+    console.log("🔄 Registrando comandos...");
+
+    await rest.put(
+      Routes.applicationGuildCommands(
+        process.env.CLIENT_ID,
+        process.env.GUILD_ID
+      ),
+      { body: commands }
+    );
+
+    console.log("✅ Comandos registrados.");
+  } catch (error) {
+    console.error(error);
+  }
+})();

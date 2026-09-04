@@ -1,12 +1,13 @@
 {
   "name": "mi-bot-discord",
   "version": "1.0.0",
-  "description": "Mi bot de Discord",
+  "description": "Bot de Discord con comandos Slash",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "deploy": "node deploy-commands.js"
   },
   "dependencies": {
-    "discord.js": "^14.22.1"
+    "discord.js": "^14.24.2"
   }
 }
